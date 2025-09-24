@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Wedding</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- First Invitation Image -->
+<section class="invitation-image">
+    <img src="images/weddinginv.png" alt="Invitation 1">
+</section>
+
+<!-- Second Invitation Image -->
+<section class="invitation-image">
+    <img src="images/weddinginv.png" alt="Invitation 2">
+</section>
+
+<!-- Countdown Section -->
+<section id="countdown-section" class="countdown-section">
+    <h2>Countdown to the Big Day:</h2>
+    <p id="countdown"></p>
+</section>
+
+<!-- Location Section -->
+<section id="location-section" class="map-section">
+    <h2>Location</h2>
+    <p>
+        <a href="https://www.waze.com/ul?ll=0.0,0.0&navigate=yes" target="_blank">
+            Open in Waze
+        </a> | 
+        <a href="https://www.google.com/maps?q=0.0,0.0" target="_blank">
+            Open in Google Maps
+        </a>
+    </p>
+</section>
+
+<!-- RSVP Section -->
+<section id="rsvp-section" class="rsvp-section">
+    <h2>RSVP</h2>
+    <form action="https://formspree.io/f/myznyobp" method="POST">
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" required><br>
+
+        <label for="attending">Will you attend?</label><br>
+        <select id="attending" name="attending" required>
+            <option value="">Select</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+        </select><br>
+
+        <label for="guests">Number of guests:</label><br>
+        <input type="number" id="guests" name="guests" min="1" required><br>
+
+        <!-- Redirect to thank-you page after submit -->
+        <input type="hidden" name="_next" value="thankyou.html">
+
+        <button type="submit">Submit RSVP</button>
+    </form>
+</section>
+
+<!-- Bottom Navigation -->
+<nav class="bottom-nav">
+    <a href="#countdown-section">Countdown</a>
+    <a href="#location-section">Location</a>
+    <a href="#rsvp-section">RSVP</a>
+</nav>
+
+<script>
+// Countdown timer
+var weddingDate = new Date("2025-12-31T17:00:00").getTime(); // Change your wedding date/time
+var countdown = setInterval(function() {
+    var now = new Date().getTime();
+    var distance = weddingDate - now;
+
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
+    var minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
+    var seconds = Math.floor((distance % (1000*60)) / 1000);
+
+    document.getElementById("countdown").innerHTML = days + "d " + hours + "h "
+    + minutes + "m " + seconds + "s ";
+
+    if(distance < 0){
+        clearInterval(countdown);
+        document.getElementById("countdown").innerHTML = "The wedding has started!";
+    }
+}, 1000);
+</script>
+
+</body>
+</html>
