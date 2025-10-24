@@ -1,95 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wedding Invitation</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wedding RSVP</title>
+  <link rel="stylesheet" href="teststyle.css" />
 </head>
 <body>
-    <!-- Invitation Image -->
-    <div class="invitation-image">
-        <img src="invitation.jpg" alt="Wedding Invitation">
+
+  <!-- Invitation Section -->
+  <section class="invitation-section" id="invitation">
+    <img src="invitation.jpg" alt="Wedding Invitation" class="invitation-image" />
+  </section>
+
+  <!-- Countdown Section -->
+  <section class="countdown-section" id="countdown-section">
+    <h1>We’re Getting Married!</h1>
+    <div id="countdown">
+      <div class="time-box"><span id="days">00</span><p>Days</p></div>
+      <div class="time-box"><span id="hours">00</span><p>Hours</p></div>
+      <div class="time-box"><span id="minutes">00</span><p>Minutes</p></div>
+      <div class="time-box"><span id="seconds">00</span><p>Seconds</p></div>
     </div>
+  </section>
 
-    <!-- Countdown Section -->
-    <section class="countdown-section" id="countdown">
-        <h1>We're Getting Married!</h1>
-        <h2>26 March 2026 • 10:00 AM</h2>
-        <div id="countdown-timer">
-            <div class="count-box">
-                <span id="days">0</span>
-                <p>Days</p>
-            </div>
-            <div class="count-box">
-                <span id="hours">0</span>
-                <p>Hours</p>
-            </div>
-            <div class="count-box">
-                <span id="minutes">0</span>
-                <p>Minutes</p>
-            </div>
-            <div class="count-box">
-                <span id="seconds">0</span>
-                <p>Seconds</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Map Section -->
-    <section class="map-section" id="location">
-        <h2>Our Wedding Location</h2>
-        <p>Click below to open the location in Google Maps</p>
-        <a href="https://goo.gl/maps/example" target="_blank">
-            <button>View on Google Maps</button>
-        </a>
-    </section>
-
-    <!-- RSVP Section -->
-    <section class="rsvp-section" id="rsvp">
-        <h2>RSVP</h2>
-        <form action="thankyou.html" method="get">
-            <input type="text" name="name" placeholder="Your Name" required><br>
-            <select name="attendance" required>
-                <option value="">Will you attend?</option>
-                <option value="yes">Yes, I’ll be there</option>
-                <option value="no">Sorry, can’t make it</option>
-            </select><br>
-            <button type="submit">Submit</button>
-        </form>
-    </section>
-
-    <!-- Bottom Navigation -->
-    <div class="bottom-nav">
-        <a href="#countdown">Countdown</a>
-        <a href="#location">Location</a>
-        <a href="#rsvp">RSVP</a>
+  <!-- Location Section -->
+  <section class="location-section" id="location">
+    <h2>Venue</h2>
+    <p>Mutiara Grand Ballroom, Kiulap Plaza Hotel</p>
+    <div class="map-links">
+      <a href="https://waze.com/ul?ll=4.890022,114.927696&navigate=yes" target="_blank">
+        <img src="waze-icon.png" alt="Waze" class="map-icon">
+      </a>
+      <a href="https://www.google.com/maps?q=Mutiara+Grand+Ballroom,+Kiulap+Plaza+Hotel" target="_blank">
+        <img src="googlemaps-icon.png" alt="Google Maps" class="map-icon">
+      </a>
     </div>
+  </section>
 
-    <script>
-        // Countdown Script
-        const targetDate = new Date("March 26, 2026 10:00:00").getTime();
+  <!-- RSVP Section -->
+  <section class="rsvp-section" id="rsvp">
+    <h2>RSVP</h2>
+    <form id="rsvp-form" action="https://formspree.io/f/myznyobp" method="POST">
+      <!-- Redirect to thank-you page after submission -->
+      <input type="hidden" name="_redirect" value="tq.html">
 
-        const countdown = setInterval(() => {
-            const now = new Date().getTime();
-            const distance = targetDate - now;
+      <label for="name">Your Name</label>
+      <input type="text" name="name" id="name" required>
 
-            if (distance <= 0) {
-                clearInterval(countdown);
-                document.getElementById("countdown-timer").innerHTML = "<h2>It's the Big Day!</h2>";
-                return;
-            }
+      <label for="attendance">Will you be attending?</label>
+      <select name="attendance" id="attendance" required>
+        <option value="">Select one</option>
+        <option value="Yes, I will attend">Yes, I will attend</option>
+        <option value="No, I cannot attend">No, I cannot attend</option>
+      </select>
 
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      <label for="guests">How many people (per family)?</label>
+      <input type="number" name="guests" id="guests" min="1" required>
 
-            document.getElementById("days").textContent = days;
-            document.getElementById("hours").textContent = hours;
-            document.getElementById("minutes").textContent = minutes;
-            document.getElementById("seconds").textContent = seconds;
-        }, 1000);
-    </script>
+      <button type="submit" class="btn">Submit RSVP</button>
+    </form>
+  </section>
+
+  <script>
+    // Countdown
+    const countdown = () => {
+      const targetDate = new Date("March 26, 2026 10:00:00").getTime();
+      const now = new Date().getTime();
+      const diff = targetDate - now;
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+      document.getElementById("days").innerText = days;
+      document.getElementById("hours").innerText = hours;
+      document.getElementById("minutes").innerText = minutes;
+      document.getElementById("seconds").innerText = seconds;
+    };
+    setInterval(countdown, 1000);
+  </script>
+
 </body>
 </html>
