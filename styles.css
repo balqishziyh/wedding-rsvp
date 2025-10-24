@@ -1,12 +1,13 @@
 /* Global */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', Arial, sans-serif;
     margin: 0;
     padding: 0;
     scroll-behavior: smooth;
+    background-color: #fff9fa;
 }
 
-/* Full-screen invitation images */
+/* Invitation Image */
 .invitation-image {
     width: 100%;
     text-align: center;
@@ -17,11 +18,11 @@ body {
     display: block;
 }
 
-/* Countdown, Location, RSVP Sections */
+/* Sections */
 .countdown-section,
 .map-section,
 .rsvp-section {
-    background-color: #ffffff; /* light background for readability */
+    background-color: #ffffff;
     color: #333;
     padding: 60px 20px;
     text-align: center;
@@ -31,6 +32,38 @@ body {
 h1, h2 {
     color: #b03060;
     margin-bottom: 20px;
+    font-family: 'Playfair Display', serif;
+}
+
+/* Countdown Layout */
+#countdown-timer {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.count-box {
+    background-color: #fff0f5;
+    border: 2px solid #b03060;
+    border-radius: 12px;
+    width: 100px;
+    padding: 20px 10px;
+    box-shadow: 0 4px 10px rgba(176, 48, 96, 0.1);
+}
+
+.count-box span {
+    display: block;
+    font-size: 32px;
+    font-weight: bold;
+    color: #b03060;
+}
+
+.count-box p {
+    margin: 0;
+    font-size: 16px;
+    color: #555;
 }
 
 /* Inputs and Selects */
@@ -39,6 +72,8 @@ input, select {
     width: 100%;
     max-width: 300px;
     margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
     box-sizing: border-box;
 }
 
@@ -69,7 +104,7 @@ button:hover {
     display: flex;
     justify-content: center;
     gap: 20px;
-    flex-wrap: wrap; /* wrap links on smaller screens */
+    flex-wrap: wrap;
 }
 
 .bottom-nav a {
@@ -83,13 +118,17 @@ button:hover {
     text-decoration: underline;
 }
 
-/* Responsive Typography & Layout */
+/* Responsive */
 @media (max-width: 768px) {
     h1 {
         font-size: 28px;
     }
     h2 {
         font-size: 22px;
+    }
+    .count-box {
+        width: 80px;
+        padding: 15px 5px;
     }
     button {
         font-size: 14px;

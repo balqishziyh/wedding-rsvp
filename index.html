@@ -1,94 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Our Wedding</title>
-<link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Invitation</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Invitation Image -->
+    <div class="invitation-image">
+        <img src="invitation.jpg" alt="Wedding Invitation">
+    </div>
 
-<!-- First Invitation Image -->
-<section class="invitation-image">
-    <img src="images/weddinginv.png" alt="Invitation 1">
-</section>
+    <!-- Countdown Section -->
+    <section class="countdown-section" id="countdown">
+        <h1>We're Getting Married!</h1>
+        <h2>26 March 2026 • 10:00 AM</h2>
+        <div id="countdown-timer">
+            <div class="count-box">
+                <span id="days">0</span>
+                <p>Days</p>
+            </div>
+            <div class="count-box">
+                <span id="hours">0</span>
+                <p>Hours</p>
+            </div>
+            <div class="count-box">
+                <span id="minutes">0</span>
+                <p>Minutes</p>
+            </div>
+            <div class="count-box">
+                <span id="seconds">0</span>
+                <p>Seconds</p>
+            </div>
+        </div>
+    </section>
 
-<!-- Second Invitation Image -->
-<section class="invitation-image">
-    <img src="images/weddinginv.png" alt="Invitation 2">
-</section>
-
-<!-- Countdown Section -->
-<section id="countdown-section" class="countdown-section">
-    <h2>Countdown to the Big Day:</h2>
-    <p id="countdown"></p>
-</section>
-
-<!-- Location Section -->
-<section id="location-section" class="map-section">
-    <h2>Location</h2>
-    <p>
-        <a href="https://www.waze.com/ul?ll=0.0,0.0&navigate=yes" target="_blank">
-            Open in Waze
-        </a> | 
-        <a href="https://www.google.com/maps?q=0.0,0.0" target="_blank">
-            Open in Google Maps
+    <!-- Map Section -->
+    <section class="map-section" id="location">
+        <h2>Our Wedding Location</h2>
+        <p>Click below to open the location in Google Maps</p>
+        <a href="https://goo.gl/maps/example" target="_blank">
+            <button>View on Google Maps</button>
         </a>
-    </p>
-</section>
+    </section>
 
-<!-- RSVP Section -->
-<section id="rsvp-section" class="rsvp-section">
-    <h2>RSVP</h2>
-    <form action="https://formspree.io/f/myznyobp" method="POST">
-        <label for="name">Name:</label><br>
-        <input type="text" id="name" name="name" required><br>
+    <!-- RSVP Section -->
+    <section class="rsvp-section" id="rsvp">
+        <h2>RSVP</h2>
+        <form action="thankyou.html" method="get">
+            <input type="text" name="name" placeholder="Your Name" required><br>
+            <select name="attendance" required>
+                <option value="">Will you attend?</option>
+                <option value="yes">Yes, I’ll be there</option>
+                <option value="no">Sorry, can’t make it</option>
+            </select><br>
+            <button type="submit">Submit</button>
+        </form>
+    </section>
 
-        <label for="attending">Will you attend?</label><br>
-        <select id="attending" name="attending" required>
-            <option value="">Select</option>
-            <option value="yes">Yes</option>
-            <option value="no">No</option>
-        </select><br>
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+        <a href="#countdown">Countdown</a>
+        <a href="#location">Location</a>
+        <a href="#rsvp">RSVP</a>
+    </div>
 
-        <label for="guests">Number of guests:</label><br>
-        <input type="number" id="guests" name="guests" min="1" required><br>
+    <script>
+        // Countdown Script
+        const targetDate = new Date("March 26, 2026 10:00:00").getTime();
 
-        <!-- Redirect to thank-you page after submit -->
-        <input type="hidden" name="_next" value="thankyou.html">
+        const countdown = setInterval(() => {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
 
-        <button type="submit">Submit RSVP</button>
-    </form>
-</section>
+            if (distance <= 0) {
+                clearInterval(countdown);
+                document.getElementById("countdown-timer").innerHTML = "<h2>It's the Big Day!</h2>";
+                return;
+            }
 
-<!-- Bottom Navigation -->
-<nav class="bottom-nav">
-    <a href="#countdown-section">Countdown</a>
-    <a href="#location-section">Location</a>
-    <a href="#rsvp-section">RSVP</a>
-</nav>
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-<script>
-// Countdown timer
-var weddingDate = new Date("2025-12-31T17:00:00").getTime(); // Change your wedding date/time
-var countdown = setInterval(function() {
-    var now = new Date().getTime();
-    var distance = weddingDate - now;
-
-    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    var hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
-    var minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
-    var seconds = Math.floor((distance % (1000*60)) / 1000);
-
-    document.getElementById("countdown").innerHTML = days + "d " + hours + "h "
-    + minutes + "m " + seconds + "s ";
-
-    if(distance < 0){
-        clearInterval(countdown);
-        document.getElementById("countdown").innerHTML = "The wedding has started!";
-    }
-}, 1000);
-</script>
-
+            document.getElementById("days").textContent = days;
+            document.getElementById("hours").textContent = hours;
+            document.getElementById("minutes").textContent = minutes;
+            document.getElementById("seconds").textContent = seconds;
+        }, 1000);
+    </script>
 </body>
 </html>
