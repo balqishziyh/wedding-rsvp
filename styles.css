@@ -1,93 +1,327 @@
+/* General */
 body {
   font-family: 'Poppins', sans-serif;
   margin: 0;
   padding: 0;
   color: #333;
   scroll-behavior: smooth;
-  background: #fff;
+  background-color: #f8f5f0; /* matching color for all sections except invitation */
 }
 
-/* Sections */
-section {
+/* Full-screen Invitation */
+/* Invitation Section */
+.invitation-section {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to bottom, #fdf6f0, #fff8f2);
+  padding: 20px;
+}
+
+.invitation-card {
+  background: #fff;
+  border: 2px solid #e6d6c5;
+  border-radius: 25px;
+  padding: 60px 40px;
+  max-width: 600px;
+  text-align: center;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+  font-family: 'Playfair Display', serif;
+}
+
+/* Arabic Bismillah */
+.invitation-card .bismillah {
+  font-family: 'Amiri', serif; /* Arabic font */
+  font-size: 2em;
+  color: #8c5a4b;
+  margin-bottom: 20px;
+}
+
+/* Ceremony */
+.invitation-card .ceremony {
+  font-family: 'Great Vibes', cursive;
+  font-size: 1.5em;
+  color: #b78c7a;
+  margin-bottom: 15px;
+}
+
+/* Names */
+.invitation-card .names {
+  font-family: 'Great Vibes', cursive;
+  font-size: 3em;
+  color: #8c5a4b;
+  margin-bottom: 25px;
+}
+
+/* Spacer */
+.invitation-card .spacer {
+  height: 30px;
+}
+
+/* Date & Time */
+.invitation-card .datetime {
+  font-size: 1.2em;
+  font-weight: 500;
+  color: #5a4a42;
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+/* Venue */
+.invitation-card .venue {
+  font-size: 1em;
+  color: #5a4a42;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .invitation-card {
+    padding: 40px 25px;
+  }
+  .invitation-card .names {
+    font-size: 2.2em;
+  }
+  .invitation-card .bismillah {
+    font-size: 1.6em;
+  }
+}
+
+@media (max-width: 480px) {
+  .invitation-card {
+    padding: 30px 20px;
+  }
+  .invitation-card .names {
+    font-size: 1.8em;
+  }
+  .invitation-card .bismillah {
+    font-size: 1.4em;
+  }
+  .invitation-card .ceremony {
+    font-size: 1.2em;
+  }
+}
+
+
+
+/* Other Sections */
+section:not(.invitation-section) {
   padding: 60px 20px;
   text-align: center;
 }
 
-/* Invitation */
-.invitation-section img {
-  width: 100%;
-  height: auto;
+/* Calendar Section */
+.calendar {
+  display: inline-block;
+  border: 2px solid #333;
+  border-radius: 10px;
+  padding: 20px;
+  background-color: #fff;
 }
 
-/* Countdown */
+.month {
+  font-weight: bold;
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.days {
+  display: grid;
+  grid-template-columns: repeat(7, 30px);
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.dates {
+  display: grid;
+  grid-template-columns: repeat(7, 30px);
+  text-align: center;
+  gap: 5px;
+}
+
+.dates div {
+  padding: 5px;
+}
+
+.dates .highlight {
+  background: #ff5555;
+  color: white;
+  border-radius: 50%;
+  font-weight: bold;
+}
+
+/* Countdown Section */
 .countdown-section h1 {
   font-size: 2em;
   margin-bottom: 30px;
 }
+
 #countdown {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   gap: 15px;
 }
+
 .time-box {
   background: #f5f5f5;
   padding: 20px;
   border-radius: 10px;
   width: 80px;
+  text-align: center;
 }
+
 .time-box span {
   display: block;
   font-size: 2em;
   font-weight: 600;
 }
+
 .time-box p {
   margin: 5px 0 0;
   font-size: 0.9em;
 }
 
-/* Location */
+/* Location Section */
 .location-section h2 {
   font-size: 1.8em;
 }
+
 .map-links {
   display: flex;
   justify-content: center;
   gap: 30px;
   margin-top: 20px;
 }
+
 .map-icon {
   width: 50px;
   height: 50px;
   cursor: pointer;
   transition: transform 0.2s;
 }
-.map-icon:hover { transform: scale(1.1); }
 
-/* RSVP Form */
+.map-icon:hover {
+  transform: scale(1.1);
+}
+
+/* RSVP Section */
 .rsvp-section {
   max-width: 400px;
   margin: auto;
   text-align: left;
 }
-.rsvp-section h2 { text-align: center; margin-bottom: 30px; }
-form { display: flex; flex-direction: column; gap: 15px; }
-input, select { padding: 10px; border: 1px solid #ccc; border-radius: 8px; font-size: 1em; }
-.btn { background: #333; color: #fff; border: none; padding: 12px; border-radius: 25px; cursor: pointer; }
-.btn:hover { background: #555; }
 
-/* Thank You Page */
-.thankyou-section {
-  padding: 100px 20px;
+.rsvp-section h2 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+input,
+select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1em;
+}
+
+.btn {
+  background: #333;
+  color: #fff;
+  border: none;
+  padding: 12px;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: #555;
 }
 
 /* Responsive */
-@media (max-width: 768px) {
-  #countdown { gap: 10px; }
-  .time-box { width: 70px; padding: 15px; }
+@media (max-width: 1024px) {
+  .calendar, #countdown, .map-links {
+    transform: scale(0.9);
+  }
 }
+
+@media (max-width: 768px) {
+  .calendar {
+    padding: 15px;
+  }
+  .month {
+    font-size: 1.3em;
+  }
+  .days,
+  .dates {
+    grid-template-columns: repeat(7, 25px);
+  }
+  .dates div {
+    padding: 4px;
+  }
+
+  #countdown {
+    gap: 10px;
+  }
+  .time-box {
+    width: 70px;
+    padding: 15px;
+  }
+  .time-box span {
+    font-size: 1.8em;
+  }
+  .map-icon {
+    width: 45px;
+    height: 45px;
+  }
+
+  .rsvp-section {
+    max-width: 350px;
+  }
+}
+
 @media (max-width: 480px) {
-  .time-box { width: 60px; padding: 10px; }
-  .time-box span { font-size: 1.5em; }
-  .map-icon { width: 40px; height: 40px; }
+  .calendar {
+    padding: 10px;
+  }
+  .month {
+    font-size: 1.1em;
+  }
+  .days,
+  .dates {
+    grid-template-columns: repeat(7, 20px);
+  }
+  .dates div {
+    padding: 3px;
+    font-size: 0.8em;
+  }
+
+  #countdown {
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .time-box {
+    width: 60px;
+    padding: 10px;
+  }
+  .time-box span {
+    font-size: 1.4em;
+  }
+  .map-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .rsvp-section {
+    max-width: 300px;
+    padding: 0 10px;
+  }
 }
