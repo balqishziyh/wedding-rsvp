@@ -28,7 +28,7 @@
     <div class="spacer"></div>
 
     <!-- Date & Time -->
-    <p class="datetime">Thursday, 26 March 2026 <br> 10:00 AM</p>
+    <p class="datetime">Ahad, 29 Mac 2026 <br> 10:00 AM</p>
 
     <!-- Venue -->
     <p class="venue">Mutiara Grand Ballroom, Kiulap Plaza Hotel</p>
@@ -51,7 +51,7 @@
         <div>2</div><div>3</div><div>4</div><div>5</div><div>6</div><div>7</div><div>8</div>
         <div>9</div><div>10</div><div>11</div><div>12</div><div>13</div><div>14</div><div>15</div>
         <div>16</div><div>17</div><div>18</div><div>19</div><div>20</div><div>21</div><div>22</div>
-        <div>23</div><div>24</div><div>25</div><div class="highlight">26</div><div>27</div><div>28</div><div>29</div>
+        <div>23</div><div>24</div><div>25</div><div>26</div><div>27</div><div>28</div><div class="highlight">29</div>
         <div>30</div><div>31</div>
       </div>
     </div>
@@ -70,7 +70,7 @@
 
   <!-- Location Section -->
   <section class="location-section" id="location">
-    <h2>Venue</h2>
+    <h2>Navigasi Lokasi Majlis</h2>
     <p>Mutiara Grand Ballroom, Kiulap Plaza Hotel</p>
     <div class="map-links">
       <a href="https://waze.com/ul?ll=4.890022,114.927696&navigate=yes" target="_blank">
@@ -84,21 +84,21 @@
 
   <!-- RSVP Section -->
   <section class="rsvp-section" id="rsvp">
-    <h2>RSVP</h2>
+    <h2>Sila RSVP</h2>
     <form id="rsvp-form" action="https://formspree.io/f/myznyobp" method="POST">
       <input type="hidden" name="_redirect" value="thankyou.html">
 
-      <label for="name">Your Name</label>
+      <label for="name">Nama</label>
       <input type="text" name="name" id="name" required>
 
-      <label for="attendance">Will you be attending?</label>
+      <label for="attendance">Adakah anda hadir di acara ini?</label>
       <select name="attendance" id="attendance" required>
-        <option value="">Select one</option>
-        <option value="Yes, I will attend">Yes, I will attend</option>
-        <option value="No, I cannot attend">No, I cannot attend</option>
+        <option value=""></option>
+        <option value="Yes, I will attend">Ya, saya hadir</option>
+        <option value="No, I cannot attend">Tidak, saya tidak dapat hadir</option>
       </select>
 
-      <label for="guests">How many people (per family)?</label>
+      <label for="guests">Bilangan kehadiran (satu keluarga)?</label>
       <input type="number" name="guests" id="guests" min="1" required>
 
       <button type="submit" class="btn">Submit RSVP</button>
@@ -108,7 +108,7 @@
   <script>
     // Countdown
     const countdown = () => {
-      const targetDate = new Date("March 26, 2026 10:00:00").getTime();
+      const targetDate = new Date("March 29, 2026 10:00:00").getTime();
       const now = new Date().getTime();
       const diff = targetDate - now;
 
